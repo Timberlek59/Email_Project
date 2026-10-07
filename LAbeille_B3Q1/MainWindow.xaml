@@ -115,7 +115,69 @@
                 </Grid>
             </TabItem>
 
-            <!-- MODULE 3 : Emplacement futur -->
+            <!-- MODULE 3 : Chronomètre Analogique -->
+            <TabItem Header="⏱️ Chronomètre" FontSize="14" Padding="10">
+                <Grid Background="#F5F5F5" Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Chronomètre Analogique" 
+                               FontSize="22" 
+                               FontWeight="Bold" 
+                               HorizontalAlignment="Center" 
+                               Margin="0,0,0,10"/>
+
+                    <!-- Cadran du Chronomètre -->
+                    <Grid Grid.Row="1" Width="260" Height="260" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Ellipse Stroke="DarkSlateGray" StrokeThickness="6" Fill="White">
+                            <Ellipse.Effect>
+                                <DropShadowEffect BlurRadius="10" Color="Gray" Opacity="0.3"/>
+                            </Ellipse.Effect>
+                        </Ellipse>
+
+                        <TextBlock Text="{Binding FormattedTime}" 
+                                   FontSize="16" 
+                                   FontWeight="SemiBold" 
+                                   Foreground="Gray"
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center" 
+                                   Margin="0,90,0,0"/>
+
+                        <!-- Aiguille des minutes -->
+                        <Rectangle Width="6" Height="70" Fill="RoyalBlue" RadiusX="3" RadiusY="3"
+                                   HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,60,0,0"
+                                   RenderTransformOrigin="0.5,1">
+                            <Rectangle.RenderTransform>
+                                <RotateTransform Angle="{Binding MinuteAngle}"/>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
+
+                        <!-- Aiguille des secondes -->
+                        <Rectangle Width="3" Height="95" Fill="Crimson" RadiusX="1.5" RadiusY="1.5"
+                                   HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,35,0,0"
+                                   RenderTransformOrigin="0.5,1">
+                            <Rectangle.RenderTransform>
+                                <RotateTransform Angle="{Binding SecondAngle}"/>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
+
+                        <!-- Pivot central -->
+                        <Ellipse Width="14" Height="14" Fill="DarkSlateGray" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+
+                    <!-- Boutons -->
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+                        <Button Content="Démarrer" Command="{Binding StartCommand}" Width="100" Height="35" Margin="5" Background="#4CAF50" Foreground="White" FontWeight="Bold"/>
+                        <Button Content="Arrêter" Command="{Binding StopCommand}" Width="100" Height="35" Margin="5" Background="#F44336" Foreground="White" FontWeight="Bold"/>
+                        <Button Content="Réinitialiser" Command="{Binding ResetCommand}" Width="100" Height="35" Margin="5" Background="#2196F3" Foreground="White" FontWeight="Bold"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <!-- MODULE 4 : Autre Projet -->
             <TabItem Header="⚙️ Autre Projet" FontSize="14" Padding="10">
                 <Grid Margin="20">
                     <TextBlock Text="Prochain module à venir." VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Gray" FontSize="16"/>

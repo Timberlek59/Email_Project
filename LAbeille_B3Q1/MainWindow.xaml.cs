@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.IO;                  // Requis pour File et Path
+using System.IO;                   // Requis pour File et Path
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Text.Json;           // Requis pour la sérialisation JSON en .NET moderne
+using System.Text.Json;           // Requis pour la sérialisation JSON
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
@@ -19,9 +19,13 @@ namespace LAbeille_B3Q1
         // Chemin du fichier de sauvegarde
         private readonly string filePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "todolist.json");
 
+        // CONSTRUCTEUR UNIQUE (Regroupé ici)
         public MainWindow()
         {
             InitializeComponent();
+
+            // Attribuer le DataContext pour que le Chronomètre fonctionne
+            this.DataContext = new LAbeille_B3Q1.ViewModel.ChronoViewModel();
 
             // Lier la collection à la ListBox
             lstTaches.ItemsSource = Taches;
@@ -121,7 +125,6 @@ namespace LAbeille_B3Q1
         {
             try
             {
-                // Remplacement de JavaScriptSerializer par JsonSerializer (propre & moderne)
                 string json = JsonSerializer.Serialize(Taches);
                 File.WriteAllText(filePath, json);
 
